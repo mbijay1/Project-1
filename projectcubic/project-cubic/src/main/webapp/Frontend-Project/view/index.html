@@ -1,0 +1,127 @@
+<html>
+  <head>
+    <title>Product List</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  </head>
+  <body ng-app="productApp" ng-controller="productCtrl">
+    <div ng-show="showTable">
+      <table>
+        <tr>
+          <td>Search By:</td>
+          <td><select class="" ng-model="searchBy">
+            <option value="$">All</option>
+            <option value="PRODUCTNAME">Product Name</option>
+            <option value="PRODUCTNUMBER">Product No.</option>
+            <option value="UPC">UPC Code</option>
+          </select></td>
+          <td><input type="text" placeholder="Search" ng-model="search[searchBy]"></td>
+        </tr>
+      </table>
+
+      <table>
+        <tr>
+          <th>S.N</th>
+          <th>Product Name</th>
+          <th>Product Number</th>
+          <th>UPC Code</th>
+          <th>Product Category</th>
+          <th>Product Manufacturer</th>
+          <th>Product Version</th>
+          <th>Active Date</th>
+          <th>Inactive Date</th>
+          <th>Created Date</th>
+          <th>Current Quantity</th>
+          <th>Threshold Quantity</th>
+          <th>Ordered Quantity</th>
+          <th>Product Price</th>
+        </tr>
+        <tr ng-click="showDescriptionMethod(product)" ng-repeat="product in productListFromDataBase | filter:search"><!--change testProductList to ProductList-->
+          <td width="40px"></td>
+          <td width="100px">{{product.PRODUCTNAME}}</td>
+          <td width="100px">{{product.PRODUCTNUMBER}}</td>
+          <td width="100px">{{product.UPC}}</td>
+          <td width="100px">{{product.CATEGORY}}</td>
+          <td width="100px">{{product.MANUFACTURER}}</td>
+          <td width="100px">{{product.VERSION}}</td>
+          <td width="100px">{{product.ACTIVE_DATE}}</td>
+          <td width="100px">{{product.INACTIVE_DATE}}</td>
+          <td width="100px">{{product.CREATED_DATE}}</td>
+          <td width="100px">{{product.CURRENT_QUANTITY}}</td>
+          <td width="100px">{{product.THRESHOLDQUANTITY}}</td>
+          <td width="100px">{{product.ORDERED_QUANTITY}}</td>
+          <td width="100px">{{product.PRICE}}</td>
+        </tr>
+        <tr ng-if="showAdd">
+          <td width="40px" color="white">S.N</td>
+          <td width="100px"><input size="7" type="text" placeholder="Enter Name" ng-model="productModel.PRODUCTNAME"></td>
+          <td width="100px"><input size="7" type="text" placeholder="Enter Number" ng-model="productModel.PRODUCTNUMBER"></td>
+          <td width="100px"><input size="7" type="text" placeholder="Enter UPC" ng-model="productModel.UPC"></td>
+          <td width="100px"><select class="" name="" ng-model="productModel.CATEGORY"<!--ng-repeat to do-->
+            <option value="">TO      DO</option>
+          </select></td>
+          <td width="100px"><select class="" name="" ng-model="productModel.MANUFACTURER"><!--ng-repeat to do-->
+            <option value="">TO      DO</option>
+          </select></td>
+          <td width="100px"><input size="7" type="text" placeholder="Version" ng-model="productModel.VERSION"></td>
+          <td width="100px"><input size="7" type="text" ng-model="productModel.ACTIVE_DATE" placeholder="mm/dd/yy"></td>
+          <td width="100px"><input size="7" type="text" ng-model="productModel.INACTIVE_DATE" placeholder="mm/dd/yy"></td>
+          <td width="100px"><input size="7" type="text" ng-model="productModel.CREATED_DATE" placeholder="mm/dd/yy"></td>
+          <td width="100px"><input size="7" type="text" placeholder="Quantity" ng-model="productModel.CURRENT_QUANTITY"></td>
+          <td width="100px"><input size="7" type="text" placeholder="Threshold" ng-model="productModel.THRESHOLDQUANTITY"></td>
+          <td width="100px"><input size="7" type="text" placeholder="Order" ng-model="productModel.ORDERED_QUANTITY"></td>
+          <td width="100px"><input size="7" type="text" placeholder="Price" ng-model="productModel.PRICE"></td>
+        </tr>
+      </table>
+      <input ng-if="!showAdd" type="button" value="Add" ng-click="addButton()">
+      <input ng-if="showAdd" type="button" value="Save" ng-click="saveAdd()">
+      <input ng-if="showAdd" type="button" value="Cancel" ng-click="cancelAdd()">
+    </div>
+    <div class="description" ng-if="!showDescription">
+      <table>
+        <tr>
+          <th>S.N</th>
+          <th>Product Name</th>
+          <th>Product Number</th>
+          <th>UPC Code</th>
+          <th>Product Category</th>
+          <th>Product Manufacturer</th>
+          <th>Product Version</th>
+          <th>Active Date</th>
+          <th>Inactive Date</th>
+          <th>Created Date</th>
+          <th>Current Product Quantity</th>
+          <th>Threshold Quantity</th>
+          <th>Product Price</th>
+          <th>Ordered Quantity</th>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </table>
+      <div class="">
+        Description
+        {{productToDisplay.DESCRIPTION}}
+      </div>
+      <input type="button" value="Save" ng-click="descriptionSaveButton()">
+      <input type="button" value="Cancel" ng-click="descriptionCancelButton()">
+
+    </div>
+    <script src="/node_modules/angular/angular.js"></script>
+    <script type="text/javascript" src="/script/productApp.js"></script>
+    <script type="text/javascript" src="/script/services/productService.js"></script>
+    <script type="text/javascript" src="/script/controllers/productCtrl.js"></script>
+  </body>
+</html>

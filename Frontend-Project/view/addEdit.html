@@ -1,0 +1,104 @@
+<div class="">
+  <table class=" table-condensed">
+    <tr>
+      <td>ID</td>
+      <td>:</td>
+      <td><input type="text" ng-model="productModel.pk" disabled></td>
+      <td></td>
+      <td>Name</td>
+      <td>:</td>
+      <td><input type="text" class = "{{nameClass}}" placeholder="{{placeHolderName}}" ng-model="productModel.productName"></td>
+      <td></td>
+      <td>Number</td>
+      <td>:</td>
+      <td><input type="text" class = "{{numberClass}}" placeholder="{{placeHolderNumber}}" ng-model="productModel.productNumber"></td>
+    </tr>
+    <tr>
+      <td>Category</td>
+      <td>:</td>
+      <td><select ng-model="productModel.category" >
+        <option value="{{category}}" ng-repeat="category in categoryList">{{category}}</option>
+      </select></td>
+      <td></td>
+      <td>Manufacturer</td>
+      <td>:</td>
+      <td><select ng-model="productModel.manufacturer">
+        <option value="{{manufacture}}" ng-repeat="manufacture in manufactureList">{{manufacture}}</option>
+      </select></td>
+      <td></td>
+      <td>Price</td>
+      <td>:</td>
+      <td><input type="text" placeholder="Enter Price" ng-model="productModel.price"></td>
+    </tr>
+    <tr>
+      <td>UPC</td>
+      <td>:</td>
+      <td><input type="text" class = "{{upcClass}}" placeholder="{{placeHolderUPC}}" ng-model="productModel.upc"></td>
+      <td></td>
+      <td>Version</td>
+      <td>:</td>
+      <td><input type="text" placeholder="Enter Version" ng-model="productModel.version"></td>
+      <td></td>
+      <td>Active Status</td>
+      <td>:</td>
+      <td><select ng-model="productModel.activeState">
+        <option value="true">Active</option>
+        <option value="false">InActive</option>
+      </select></td>
+    </tr>
+    <tr ng-if="showQuantity">
+      <td>Threshold Q</td>
+      <td>:</td>
+      <td><input type="text" placeholder="Threshold Q" ng-model="productModel.thresholdQuantity"></td>
+      <td></td>
+      <td>Current Q</td>
+      <td>:</td>
+      <td><input type="text" placeholder="Current Q" ng-model="productModel.currentQuantity"></td>
+      <td></td>
+      <td>Ordered Q</td>
+      <td>:</td>
+      <td><input type="text" placeholder="Ordered Q" ng-model="productModel.orderedQuantity"></td>
+    </tr>
+    <tr ng-if="showDate">
+      <td>Active Date</td>
+      <td>:</td>
+      <td><input type="text" ng-model="productModel.activeDate" disabled></td>
+      <td></td>
+      <td>InActive Date</td>
+      <td>:</td>
+      <td><input type="text" ng-model="productModel.inactiveDate" disabled></td>
+      <td></td>
+      <td>Created Date</td>
+      <td>:</td>
+      <td><input type="text" ng-model="productModel.createdDate" disabled></td>
+    </tr>
+  </table>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        Description :
+      </div>
+      <div class="col-md-6">
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <textarea rows="4" cols="50" ng-model="productModel.description">
+
+        </textarea>
+      </div>
+      <div class="col-md-6">
+          <label>{{errorMessage.errorCode}}</label>
+          <label>{{errorMessage.errorDetails}}</label>
+      </div>
+    </div>
+  </div>
+  <button type="button" ng-if="showAdd" ng-click="addProduct()">Add</button>
+  <button type="button" ng-if="!showAdd" ng-click="updateProduct()">Update</button>
+  <a href="#!/home"><button type="button" ng-if="!showAdd" ng-click="delProduct()">Delete</button><a>
+
+</div>
+
+
+<br>
